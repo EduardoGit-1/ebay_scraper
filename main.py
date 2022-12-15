@@ -69,8 +69,9 @@ def get_results(url, file_name, item_name):
         results_dict["Purchase Options"].append(purchase_options)
         result_count +=1
         if "s-item__before-answer" in item["class"] : break
-        
-    df = pd.DataFrame.from_dict(results_dict).sort_values(['Type Auction', 'Total Cost'],
+    
+    print(result_count, "results were found for", item_name)
+    pd.DataFrame.from_dict(results_dict).sort_values(['Type Auction', 'Total Cost'],
               ascending = [True, True]).to_excel("results/" + file_name + ".xlsx")
 
         
