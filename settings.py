@@ -25,6 +25,7 @@ RESULTS = {
     "Total Cost" : [],
     "Type Auction" : [],
     "Purchase Options" : [],
+    "Time Left" : []
 }
 
 HEADERS = {'User-Agent': 'Mozilla/5.0'}

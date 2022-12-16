@@ -42,6 +42,10 @@ def get_results(url, file_name, item_name):
                 pass
         item_location = item.find("span", class_ = "s-item__location s-item__itemLocation").text
         is_auction = "Yes" if item.find("span", class_="s-item__bids s-item__bidCount") else "No"
+        if is_auction == "Yes":
+            time_left = item.find("span", class_ = "s-item__time-left").text
+        else:
+            time_left = "Not specified"
         purchase_options = item.find("span", class_="s-item__dynamic s-item__purchaseOptionsWithIcon")
         purchase_options = purchase_options.text if purchase_options else "No other purchase options"
         
@@ -69,6 +73,7 @@ def get_results(url, file_name, item_name):
         results_dict["Total Cost"].append(total_cost)
         results_dict["Type Auction"].append(is_auction)
         results_dict["Purchase Options"].append(purchase_options)
+        results_dict["Time Left"].append(time_left)
         result_count +=1
         if "s-item__before-answer" in item["class"] : break
     
