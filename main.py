@@ -1,10 +1,12 @@
+from requirements import check_requirements
+check_requirements()
 import requests
 from copy import deepcopy
 import pandas as pd
 from bs4 import BeautifulSoup
 from settings import URL, LOCATION, TYPE, RESULTS, HEADERS
 from items import SEARCH_ITEMS_LIST
-from requirements import check_requirements
+
 
 def set_search_params(item_name = "", min_price = None, max_price = None, location = None, type = None):
     if min_price : min_price_param = "&_udlo={}".format(min_price)
@@ -77,7 +79,6 @@ def get_results(url, file_name, item_name):
         
 
 if __name__ == "__main__":
-    check_requirements()
     for item in SEARCH_ITEMS_LIST:
         item_name = item["item_name"].replace(" ", "+")
         url = set_search_params(item_name, item["min_price"], item["max_price"], item["location"], item["type"])
