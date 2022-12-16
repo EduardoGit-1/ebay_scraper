@@ -3,9 +3,11 @@ check_requirements()
 import requests
 from copy import deepcopy
 import pandas as pd
+from fuzzywuzzy import fuzz
 from bs4 import BeautifulSoup
 from settings import URL, LOCATION, TYPE, RESULTS, HEADERS
 from items import SEARCH_ITEMS_LIST
+
 
 
 def set_search_params(item_name = "", min_price = None, max_price = None, location = None, type = None):
@@ -31,6 +33,15 @@ def get_results(url, file_name, item_name):
     result_count = 0
     for item in items:
         item_title = item.find("div", class_="s-item__title").find("span").text #s-item__info clearfix
+        # if item_name == "rtx 3090":
+        #     print(item_title)
+        if fuzz.partial_ratio(item_title,item_name) < 55 and "s-item__before-answer" not in item["class"]:
+            print("The following listing does not match item name:", item_title)
+            continue
+            # if item_name == "rtx 3090":
+            #     print(item_name, item_title)
+            #     print(fuzz.partial_ratio(item_title,item_name))
+            #continue
         item_state = item.find("span", class_ = "SECONDARY_INFO").text
         item_url = item.find("a", class_ = "s-item__link", href = True)['href']
         item_price_text = item.find("span", class_="s-item__price").text.replace(",", ".").replace("\xa0", "").split()
