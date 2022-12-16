@@ -33,15 +33,13 @@ def get_results(url, file_name, item_name):
     result_count = 0
     for item in items:
         item_title = item.find("div", class_="s-item__title").find("span").text #s-item__info clearfix
-        # if item_name == "rtx 3090":
-        #     print(item_title)
         if fuzz.partial_ratio(item_title,item_name) < 55 and "s-item__before-answer" not in item["class"]:
             print("The following listing does not match item name:", item_title)
             continue
-            # if item_name == "rtx 3090":
-            #     print(item_name, item_title)
-            #     print(fuzz.partial_ratio(item_title,item_name))
-            #continue
+        elif fuzz.partial_ratio(item_title,item_name) < 55 and "s-item__before-answer" in item["class"]:
+            print("The following listing does not match item name:", item_title)
+            break
+ 
         item_state = item.find("span", class_ = "SECONDARY_INFO").text
         item_url = item.find("a", class_ = "s-item__link", href = True)['href']
         item_price_text = item.find("span", class_="s-item__price").text.replace(",", ".").replace("\xa0", "").split()
@@ -90,7 +88,7 @@ def get_results(url, file_name, item_name):
     
     print(result_count, "results were found for", item_name)
     pd.DataFrame.from_dict(results_dict).sort_values(['Type Auction', 'Total Cost'],
-              ascending = [True, True]).to_excel("results/" + file_name + ".xlsx")
+              ascending = [True, True]).reset_index(drop=True).to_excel("results/" + file_name + ".xlsx")
 
         
 
