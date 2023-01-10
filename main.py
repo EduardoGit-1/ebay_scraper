@@ -87,14 +87,18 @@ def get_results(url, file_name, item_name):
         if "s-item__before-answer" in item["class"] : break
     
     print(result_count, "results were found for", item_name)
-    pd.DataFrame.from_dict(results_dict).sort_values(['Type Auction', 'Total Cost'],
-              ascending = [True, True]).reset_index(drop=True).to_excel("results/" + file_name + ".xlsx")
+    df = pd.DataFrame.from_dict(results_dict).sort_values(['Type Auction', 'Total Cost'],
+              ascending = [True, True]).reset_index(drop=True)
+    return df
 
         
 
 if __name__ == "__main__":
+    writer = pd.ExcelWriter('results.xlsx', engine = 'openpyxl')
     for item in SEARCH_ITEMS_LIST:
         item_name = item["item_name"].replace(" ", "+")
         url = set_search_params(item_name, item["min_price"], item["max_price"], item["location"], item["type"])
         print("Searching on ebay for:", item["item_name"], "using the following URL:",url)
-        get_results(url, item["output_file_name"], item["item_name"])
+        df = get_results(url, item["output_file_name"], item["item_name"])
+        df.to_excel(writer, sheet_name=item["item_name"])
+    writer.close()

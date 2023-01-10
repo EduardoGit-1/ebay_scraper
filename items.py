@@ -39,7 +39,7 @@ SEARCH_ITEMS_LIST = [
         "type" : "Any",
         "output_file_name" : "rtx 3090"
     },
-        {
+    {
         "item_name" : "rtx 3080 ti",
         "min_price" : 150,
         "max_price" : 800,
