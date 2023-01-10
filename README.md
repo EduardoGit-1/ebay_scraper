@@ -8,21 +8,21 @@ There's no need to manually install packages, once you run the ```main.py``` all
 
 ## Usage
 
-To  run this project simply run the following bash command after you set all the  [search parameters](#search-parameters) that you desire.
+To  run this project simply run the following bash command after you set all the [search parameters](#search-parameters) that you desire.
 
 ```bash
 python3 main.py
 ```
 ### Search parameters
-In order to search the desired items add a ```dict``` to the ```SEARCH_ITEMS_LIST``` variable on the ```items.py``` file. All the required keys are described on the following table.
+In order to search the desired items add a ```dict``` to the ```SEARCH_ITEMS_LIST``` array on the ```items.py``` file. All the required keys are described on the following table.
 
- | Key         | Possible values|
+| Key         | Possible values|
 | :------------------:|---------------|
-| ```item_name``` | Insert item name/description (```str```).
-| ```min_price``` | Insert an ```integer``` or ```None``` if you don't want to specifie a minimum value.
-| ```max_price``` | Insert an ```integer``` or ```None``` if you don't want to specifie a maximum value.
+| ```item_name``` | Insert a ```str``` that describes the item that you want to search.
+| ```min_price``` | Insert an ```integer``` or ```None``` if you don't want to specify a minimum value.
+| ```max_price``` | Insert an ```integer``` or ```None``` if you don't want to specify a maximum value.
 | ```location``` | ```"Any"```, ```"Europe"```, ```"North America"```, ```"US Only"``` or ```"Asia"``` depending on the location you want to search on.
-| ```type``` | ```"Any"```, ```"Buy Now"```, ```"Auction"``` or ```"Offer"```. This filters the type of buying options, select accordingly.
+| ```type``` | ```"Any"```, ```"Buy Now"```, ```"Auction"``` or ```"Offer"```. This key filters the type of buying options, select accordingly.
 | ```output_file_name``` | ```str``` that specifies the output sheet name for this item.
 
 ## Contributing
