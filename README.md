@@ -1,6 +1,6 @@
-# Ebay Scrapper
+# Ebay Scraper
 
-This repo contains all the code used for web scrapping [ebay.com](https://www.ebay.com/).
+This repo contains all the code used for web scraping [ebay.com](https://www.ebay.com/).
 
 ## Installation
 In order to run this project you'll need to have ```Python``` installed.
